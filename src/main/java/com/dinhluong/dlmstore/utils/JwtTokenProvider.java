@@ -15,7 +15,8 @@ import java.util.Date;
 public class JwtTokenProvider {
     @Value("${jwt.secret}")
     private String JWT_SECRET ;
-    private final long JWT_EXPIRATION = 1000 * 60 * 60 * 24; 
+    private final long JWT_EXPIRATION = 1000 * 60 * 60 * 24;
+   // private final long JWT_EXPIRATION = 1000 * 30;
 
     private  Key key ;
     @PostConstruct

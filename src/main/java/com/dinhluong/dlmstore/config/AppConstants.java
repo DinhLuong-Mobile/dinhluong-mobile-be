@@ -33,6 +33,6 @@ public class AppConstants {
             "api/chatbot",
             "api/reviews/products/**",
             "/admin/login",
-            "/error"
+            "/error",
     };
 }
