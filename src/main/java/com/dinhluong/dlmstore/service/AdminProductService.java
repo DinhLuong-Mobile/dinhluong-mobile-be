@@ -79,6 +79,7 @@ public class AdminProductService {
     @Transactional(readOnly = true)
     public Page<ProductResponse> getAdminProducts(ProductType productType, String keyword, ProductStatus status,
             Long brandId, Long categoryId, Pageable pageable) {
+        System.out.println("---- Status nhận được: " + status);
         Page<Product> products = productRepository.findWithFilters(productType, keyword, status, brandId, categoryId, pageable);
 
         return products.map(p -> {

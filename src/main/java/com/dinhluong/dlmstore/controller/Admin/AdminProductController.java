@@ -146,11 +146,11 @@ public ResponseEntity<InputStreamResource> exportProducts(
 
         }
     }
-    // Trong AdminProductController
-@GetMapping("/overview-stats")
-public ResponseEntity<?> getOverviewStats() {
-    return ResponseEntity.ok(adminProductService.getOverviewStats());
-}
+        // Trong AdminProductController
+    @GetMapping("/overview-stats")
+    public ResponseEntity<?> getOverviewStats() {
+        return ResponseEntity.ok(ApiResponse.success("Lấy thống kê sản phẩm thành công", adminProductService.getOverviewStats()));
+    }
     // BẬT / TẮT NỔI BẬT
     @PutMapping("/{id}/toggle-featured")
     public ResponseEntity<?> toggleFeatured(@PathVariable Long id) {

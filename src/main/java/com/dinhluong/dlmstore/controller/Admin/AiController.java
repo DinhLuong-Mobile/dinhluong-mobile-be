@@ -1,5 +1,6 @@
 package com.dinhluong.dlmstore.controller.Admin;
 
+import com.dinhluong.dlmstore.dto.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,9 +21,9 @@ public class AiController {
     private GeminiAiService geminiAiService;
 
     @PostMapping("/generate-description")
-    public ResponseEntity<String> generateDescription(@RequestBody AiContentRequest request) {
+    public ResponseEntity<?> generateDescription(@RequestBody AiContentRequest request) {
         String result = geminiAiService.generateProductDescription(request);
-        return ResponseEntity.ok(result);
+        return ResponseEntity.ok(ApiResponse.success("Viet bai mo ta thanh cong",result));
     }
 
     @PostMapping("/extract-specs")
@@ -35,7 +36,7 @@ public class AiController {
         try {
             // Gọi Service và trả về trực tiếp chuỗi JSON cho Front-end
             String generatedJson = geminiAiService.extractSpecsFromText(request);
-            return ResponseEntity.ok(generatedJson);
+            return ResponseEntity.ok(ApiResponse.success("Boc tach thanh cong",generatedJson));
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body("Lỗi hệ thống AI: " + e.getMessage());
         }
@@ -43,16 +44,16 @@ public class AiController {
 
 
     @PostMapping("accessory/generate-description")
-    public ResponseEntity<String> generateDescription(@RequestBody AiAccessoryRequest request) {
+    public ResponseEntity<?> generateDescription(@RequestBody AiAccessoryRequest request) {
         String htmlContent = geminiAiService.generateAccessoryDescription(request);
-        return ResponseEntity.ok(htmlContent);
+        return ResponseEntity.ok(ApiResponse.success("Viet bai mo ta thanh cong",htmlContent));
     }
 
     // 2. Bóc tách thông số phụ kiện từ text thô
     @PostMapping("accessory/extract-specs")
-    public ResponseEntity<String> extractSpecs(@RequestBody AiAccessoryRequest request) {
+    public ResponseEntity<?> extractSpecs(@RequestBody AiAccessoryRequest request) {
         String jsonResult = geminiAiService.extractAccessorySpecsJson(request.getRawText());
-        return ResponseEntity.ok(jsonResult);
+        return ResponseEntity.ok(ApiResponse.success("Boc tach thanh cong",jsonResult));
     }
 
 }
