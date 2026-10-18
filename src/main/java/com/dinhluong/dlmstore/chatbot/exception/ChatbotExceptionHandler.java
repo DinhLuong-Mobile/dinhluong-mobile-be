@@ -33,15 +33,43 @@ public class ChatbotExceptionHandler {
             AiProviderException e
     ) {
 
-        log.error("Tất cả AI provider thất bại", e);
+        // Provider exception causes can contain response bodies or credential-bearing URLs.
+        log.warn("AI provider unavailable: {}", e.getClass().getSimpleName());
+
+        ChatBotResponse response = new ChatBotResponse(
+                "Dạ hệ thống tư vấn AI đang tạm thời bận. Anh/chị vui lòng thử lại sau ạ.", List.of());
+        if (e instanceof ConversationAiException conversationError) {
+            response.setConversationId(conversationError.getConversationId());
+            response.setTopicId(conversationError.getTopicId());
+        }
 
         return ResponseEntity
                 .status(HttpStatus.SERVICE_UNAVAILABLE)
-                .body(new ChatBotResponse(
-                        "Dạ hệ thống tư vấn AI đang tạm thời bận. "
-                                + "Anh/chị vui lòng thử lại sau ạ.",
-                        List.of()
-                ));
+                .body(response);
+    }
+
+    @ExceptionHandler(SecurityException.class)
+    public ResponseEntity<ChatBotResponse> handleForbidden(SecurityException e) {
+        return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                .body(new ChatBotResponse("Bạn không có quyền truy cập hội thoại", List.of()));
+    }
+
+    @ExceptionHandler(ConversationStateException.class)
+    public ResponseEntity<ChatBotResponse> handleConflict(ConversationStateException e) {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(new ChatBotResponse("Phiên hội thoại hoặc câu hỏi không còn khả dụng", List.of()));
+    }
+
+    @ExceptionHandler(org.springframework.http.converter.HttpMessageNotReadableException.class)
+    public ResponseEntity<ChatBotResponse> handleInvalidJson(Exception e) {
+        return ResponseEntity.badRequest().body(new ChatBotResponse("Request JSON không hợp lệ", List.of()));
+    }
+
+    @ExceptionHandler(org.springframework.dao.DataAccessException.class)
+    public ResponseEntity<ChatBotResponse> handleDatabaseError(org.springframework.dao.DataAccessException e) {
+        log.error("Lỗi truy cập dữ liệu hội thoại", e);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ChatBotResponse(
+                "Không thể truy cập dữ liệu hội thoại. Anh/chị vui lòng thử lại sau ạ.", List.of()));
     }
 
     @ExceptionHandler(Exception.class)

@@ -45,7 +45,7 @@ public class GeminiAiClient implements AiClient {
 
         int totalKeys = apiKeys.size();
 
-        for (int attempt = 0; attempt < totalKeys; attempt++) {
+        for (int attempt = 0; attempt < Math.min(totalKeys, 2); attempt++) {
 
             String apiKey = getNextApiKey(apiKeys);
 

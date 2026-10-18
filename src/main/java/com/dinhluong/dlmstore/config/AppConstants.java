@@ -30,7 +30,7 @@ public class AppConstants {
             "/login/oauth2/**",
             "/ws/**",
             "api/products/**",
-            "api/chatbot",
+            "/api/chatbot",
             "api/reviews/products/**",
             "/admin/login",
             "/error",

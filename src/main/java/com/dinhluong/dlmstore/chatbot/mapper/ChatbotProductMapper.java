@@ -21,6 +21,7 @@ public class ChatbotProductMapper {
 
         if (product.getVariants() != null) {
             product.getVariants().forEach(variant -> {
+                if (!variant.isActive()) return;
 
                 boolean inStock =
                         variant.getStockQuantity() != null
@@ -35,6 +36,29 @@ public class ChatbotProductMapper {
         }
 
         Map<String, String> specs = new HashMap<>();
+        if (product.getBrand() != null) specs.put("brand", product.getBrand().getName());
+        if (product.getAvailableRams() != null) specs.put("ram", String.join(", ", product.getAvailableRams()));
+        if (product.getAvailableRoms() != null) specs.put("rom", String.join(", ", product.getAvailableRoms()));
+        if (product.getVariants() != null && !product.getVariants().isEmpty()) {
+            specs.put("ram", product.getVariants().stream().filter(com.dinhluong.dlmstore.entity.ProductVariant::isActive)
+                    .map(com.dinhluong.dlmstore.entity.ProductVariant::getRam).filter(java.util.Objects::nonNull).distinct()
+                    .collect(java.util.stream.Collectors.joining(", ")));
+            specs.put("rom", product.getVariants().stream().filter(com.dinhluong.dlmstore.entity.ProductVariant::isActive)
+                    .map(com.dinhluong.dlmstore.entity.ProductVariant::getRom).filter(java.util.Objects::nonNull).distinct()
+                    .collect(java.util.stream.Collectors.joining(", ")));
+        }
+        if (product.getBatteryCapacity() != null) specs.put("battery", product.getBatteryCapacity() + " mAh");
+        if (product.getRefreshRate() != null) specs.put("refreshRate", product.getRefreshRate() + " Hz");
+        if (product.getScreenSize() != null) specs.put("screen", product.getScreenSize() + " inch"
+                + (product.getRefreshRate() == null ? "" : ", " + product.getRefreshRate() + " Hz"));
+        if (product.getSpecValues() != null) product.getSpecValues().forEach(spec -> {
+            if (spec.getAttribute() != null && spec.getValue() != null) {
+                String name = spec.getAttribute().getName().toLowerCase(java.util.Locale.ROOT);
+                specs.put(spec.getAttribute().getName(), spec.getValue());
+                if (name.contains("chip") || name.contains("processor")) specs.put("chip", spec.getValue());
+                if (name.contains("camera")) specs.putIfAbsent("camera", spec.getValue());
+            }
+        });
 
         if (product.getHighlightSpecs() != null) {
             product.getHighlightSpecs().forEach(spec ->
@@ -93,9 +117,9 @@ public class ChatbotProductMapper {
         if (product.getVariants() != null
                 && !product.getVariants().isEmpty()) {
 
-            configSummary = product.getVariants()
-                    .get(0)
-                    .getRom();
+            configSummary = product.getVariants().stream().filter(com.dinhluong.dlmstore.entity.ProductVariant::isActive)
+                    .map(com.dinhluong.dlmstore.entity.ProductVariant::getRom).filter(java.util.Objects::nonNull)
+                    .findFirst().orElse("");
         }
 
         return ChatProductDto.builder()

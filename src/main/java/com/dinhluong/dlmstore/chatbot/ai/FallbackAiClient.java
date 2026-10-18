@@ -101,7 +101,7 @@ public class FallbackAiClient {
 
                 String response = client.generate(prompt);
 
-                if (response == null || response.isBlank()) {
+                if (response == null || response.isBlank() || response.length() > 32000) {
                     throw new AiProviderException(
                             "AI trả về nội dung rỗng",
                             true,
@@ -155,9 +155,7 @@ public class FallbackAiClient {
                         e.getMessage()
                 );
 
-                if (!e.isRetryable()) {
-                    throw e;
-                }
+                // Continue to other providers even when this provider is misconfigured.
 
             }
         }

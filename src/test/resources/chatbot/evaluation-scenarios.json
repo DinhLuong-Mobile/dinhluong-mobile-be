@@ -1,0 +1,102 @@
+[
+ {"id":"E01","feature":"F04,F10,F17","turns":[
+  {"input":"Tìm Samsung dưới 10 củ","action":{"intent":"SEARCH","brands":["Samsung"],"maxPrice":10000000},"expect":{"minProducts":1,"filters":{"brands":["Samsung"],"maxPrice":10000000}}},
+  {"input":"RAM 8GB thôi","action":{"intent":"SEARCH","ram":"8GB"},"expect":{"sameTopic":0,"filters":{"brands":["Samsung"],"ram":"8GB","maxPrice":10000000}}}]},
+ {"id":"E02","feature":"F17","turns":[
+  {"input":"Tìm Samsung dưới 10 triệu","action":{"intent":"SEARCH","brands":["Samsung"],"maxPrice":10000000}},
+  {"input":"Bỏ Samsung đi","action":{"intent":"SEARCH","clearFields":["brands"]},"expect":{"sameTopic":0,"absentFilters":["brands"],"filters":{"maxPrice":10000000}}}]},
+ {"id":"E03","feature":"F17","turns":[
+  {"input":"Máy dưới 10 triệu RAM 8GB","action":{"intent":"SEARCH","maxPrice":10000000,"ram":"8GB"}},
+  {"input":"Thế 15 triệu thì sao?","action":{"intent":"SEARCH","maxPrice":15000000},"expect":{"filters":{"maxPrice":15000000,"ram":"8GB"}}}]},
+ {"id":"E04","feature":"F12,F15","turns":[
+  {"input":"So sánh Fixture Phone 1 với Fixture Phone 2","action":{"intent":"COMPARE","compareProductNames":["Fixture Phone 1","Fixture Phone 2"]},"expect":{"products":2}},
+  {"input":"Dự báo thời tiết hôm nay?","action":{"intent":"OUT_OF_DOMAIN","contextAction":"NEW_TOPIC","topicName":"Thời tiết"},"expect":{"sameTopic":0,"products":0}},
+  {"input":"Bạn vừa so sánh hai máy gì?","action":{"intent":"RECALL","referenceType":"LAST_COMPARED_PRODUCTS"},"expect":{"sameTopic":0,"sameProducts":0}}]},
+ {"id":"E05","feature":"F05,F07,F08,F11","turns":[
+  {"input":"Tư vấn điện thoại chơi game","action":{"intent":"RECOMMEND","usageGoal":"gaming","rankingCriterion":"GAMING"},"expect":{"minProducts":2}},
+  {"input":"So sánh 2 con máy ngon nhất trong list bạn vừa gợi ý","action":{"intent":"COMPARE","referenceType":"LAST_PRESENTED_LIST","rankingCriterion":"GAMING","resultLimit":2},"expect":{"products":2,"subsetOf":0}}]},
+ {"id":"E06","feature":"F16","turns":[
+  {"input":"Giới thiệu vài máy","action":{"intent":"SEARCH"},"expect":{"minProducts":3}},
+  {"input":"Con thứ hai giá bao nhiêu?","action":{"intent":"DETAIL","referenceType":"PRODUCT_BY_POSITION","productPositions":[2]},"expect":{"products":1,"positionsFrom":{"turn":0,"positions":[2]}}}]},
+ {"id":"E07","feature":"F08,F12","turns":[
+  {"input":"So sánh Fixture Phone 4 và Fixture Phone 2","action":{"intent":"COMPARE","compareProductNames":["Fixture Phone 4","Fixture Phone 2"]},"expect":{"products":2}},
+  {"input":"Máy nào rẻ hơn?","action":{"intent":"RANK","referenceType":"LAST_COMPARED_PRODUCTS","rankingCriterion":"PRICE_ASC","resultLimit":2},"expect":{"products":2,"subsetOf":0,"ascendingPrice":true}}]},
+ {"id":"E08","feature":"F13,F14","turns":[
+  {"input":"Tìm Samsung dưới 10 triệu","action":{"intent":"SEARCH","brands":["Samsung"],"maxPrice":10000000,"topicName":"Samsung tiết kiệm"}},
+  {"input":"Giờ tư vấn chụp ảnh dưới 20 triệu","action":{"intent":"SEARCH","contextAction":"NEW_TOPIC","topicName":"Chụp ảnh","usageGoal":"photography","maxPrice":20000000},"expect":{"differentTopic":0}},
+  {"input":"Quay lại Samsung lúc đầu","action":{"intent":"RECALL","contextAction":"SWITCH_TOPIC","topicDescription":"Samsung tiết kiệm","referenceType":"LAST_PRESENTED_LIST"},"expect":{"sameTopic":0,"sameProducts":0,"filters":{"maxPrice":10000000}}}]},
+ {"id":"E09","feature":"F15","turns":[
+  {"input":"Tư vấn gaming","action":{"intent":"SEARCH","usageGoal":"gaming","topicName":"Gaming"}},
+  {"input":"Chuyển sang máy pin tốt","action":{"intent":"SEARCH","contextAction":"NEW_TOPIC","topicName":"Pin tốt","usageGoal":"battery"}},
+  {"input":"Trước đó bạn đã tư vấn những gì?","action":{"intent":"RECALL","referenceType":"CONVERSATION_HISTORY"},"expect":{"sameTopic":1,"minProducts":1}}]},
+ {"id":"E10","feature":"F18","turns":[
+  {"input":"Gợi ý vài điện thoại","action":{"intent":"SEARCH"}},
+  {"input":"So sánh hai máy đó","action":{"intent":"COMPARE","referenceType":"LAST_PRESENTED_LIST"},"expect":{"clarification":true}},
+  {"input":"Máy đầu và máy thứ ba","action":{"intent":"CHAT","messageAction":"ANSWER_CLARIFICATION","productPositions":[1,3]},"expect":{"intent":"COMPARE","clarification":false,"positionsFrom":{"turn":0,"positions":[1,3]}}}]},
+ {"id":"E11","feature":"F03,F21","turns":[{"input":"Máy dưới 1 đồng","action":{"intent":"SEARCH","maxPrice":1},"expect":{"products":0,"clarification":false}}]},
+ {"id":"E12","feature":"F16,F18","turns":[{"input":"Bạn vừa so sánh máy nào?","action":{"intent":"RECALL","referenceType":"LAST_COMPARED_PRODUCTS"},"expect":{"clarification":true,"products":0}}]},
+ {"id":"E13","feature":"F01,F11","turns":[
+  {"input":"Cho xem danh sách máy","action":{"intent":"SEARCH"}},
+  {"input":"Cảm ơn nhé","action":{"intent":"CHAT","contextAction":"NEW_TOPIC","topicName":"Cảm ơn"},"expect":{"sameTopic":0}},
+  {"input":"Xem lại list vừa rồi","action":{"intent":"RECALL","referenceType":"LAST_PRESENTED_LIST"},"expect":{"sameProducts":0}}]},
+ {"id":"E14","feature":"F14,F16","turns":[
+  {"input":"Gợi ý máy tiết kiệm","action":{"intent":"SEARCH","topicName":"Tiết kiệm","maxPrice":6500000}},
+  {"input":"Bắt đầu chủ đề pin","action":{"intent":"SEARCH","contextAction":"NEW_TOPIC","topicName":"Pin","minBattery":5300}},
+  {"input":"Quay lại chủ đề trước","action":{"intent":"RECALL","referenceType":"PREVIOUS_TOPIC"},"expect":{"sameTopic":0,"sameProducts":0}}]},
+ {"id":"E15","feature":"F17","turns":[
+  {"input":"Samsung RAM 8GB dưới 10 triệu","action":{"intent":"SEARCH","brands":["Samsung"],"ram":"8GB","maxPrice":10000000}},
+  {"input":"Bỏ toàn bộ điều kiện cũ","action":{"intent":"SEARCH","filterMode":"RESET"},"expect":{"absentFilters":["brands","ram","maxPrice"]}}]},
+ {"id":"E16","feature":"F09","turns":[
+  {"input":"Tìm vài máy cho tôi","action":{"intent":"SEARCH"}},
+  {"input":"Giải thích thêm con đầu tiên","action":{"intent":"EXPLAIN","referenceType":"PRODUCT_BY_POSITION","productPositions":[1]},"expect":{"products":1,"positionsFrom":{"turn":0,"positions":[1]}}}]},
+ {"id":"E17","feature":"F07","turns":[{"input":"So sánh Fixture Phone 1 bản 256GB và 512GB màu Black","action":{"intent":"COMPARE","comparisonVariants":[{"productName":"Fixture Phone 1","rom":"256GB","color":"Black"},{"productName":"Fixture Phone 1","rom":"512GB","color":"Black"}]},"expect":{"products":1,"clarification":false}}]},
+ {"id":"E18","feature":"F12,F15","turns":[
+  {"input":"So sánh hai cấu hình Fixture Phone 1","action":{"intent":"COMPARE","comparisonVariants":[{"productName":"Fixture Phone 1","rom":"256GB","color":"Black"},{"productName":"Fixture Phone 1","rom":"512GB","color":"Black"}]}},
+  {"input":"Xin chào","action":{"intent":"CHAT"}},
+  {"input":"Bạn vừa so sánh những bản nào?","action":{"intent":"RECALL","referenceType":"LAST_COMPARED_PRODUCTS"},"expect":{"sameProducts":0,"clarification":false}}]},
+ {"id":"E19","feature":"F06","turns":[{"input":"Samsung RAM 64GB dưới 10 triệu","action":{"intent":"SEARCH","brands":["Samsung"],"ram":"64GB","maxPrice":10000000},"expect":{"minProducts":1,"clarification":false}}]},
+ {"id":"E20","feature":"F08","turns":[
+  {"input":"Tìm máy dùng lâu","action":{"intent":"SEARCH","usageGoal":"battery"}},
+  {"input":"Hai máy pin lớn nhất trong list","action":{"intent":"RANK","referenceType":"LAST_PRESENTED_LIST","rankingCriterion":"BATTERY","resultLimit":2},"expect":{"products":2,"subsetOf":0}}]},
+ {"id":"E21","feature":"F08,F18","turns":[
+  {"input":"Gợi ý điện thoại","action":{"intent":"SEARCH"}},
+  {"input":"Hai máy camera tốt nhất?","action":{"intent":"RANK","referenceType":"LAST_PRESENTED_LIST","rankingCriterion":"CAMERA","resultLimit":2},"expect":{"clarification":true}}]},
+ {"id":"E22","feature":"F18","turns":[{"input":"So sánh máy đi","action":{"intent":"COMPARE"},"expect":{"clarification":true}}]},
+ {"id":"E23","feature":"F18","turns":[
+  {"input":"So hai máy đó","action":{"intent":"COMPARE","referenceType":"LAST_PRESENTED_LIST"},"expect":{"clarification":true}},
+  {"input":"Thôi bỏ câu hỏi đó","action":{"intent":"CHAT","messageAction":"CANCEL"},"expect":{"clarification":false}}]},
+ {"id":"E24","feature":"F04","turns":[
+  {"input":"Có máy 5G không?","action":{"intent":"SEARCH","networks":["5G"]},"expect":{"minProducts":1}},
+  {"input":"Pin trên 5300mAh","action":{"intent":"SEARCH","minBattery":5300},"expect":{"filters":{"networks":["5G"],"minBattery":5300}}}]},
+ {"id":"E25","feature":"F03,F18","turns":[{"input":"Tìm máy không tồn tại abcxyz","action":{"intent":"DETAIL","targetProductName":"Nonexistent fixture xyz"},"expect":{"clarification":true,"products":0}}]},
+ {"id":"E26","feature":"F02","turns":[{"input":"Kể chuyện vũ trụ","action":{"intent":"OUT_OF_DOMAIN"},"expect":{"products":0,"clarification":false}}]},
+ {"id":"E27","feature":"F16,F18","turns":[
+  {"input":"Tìm điện thoại","action":{"intent":"SEARCH"}},
+  {"input":"Con thứ mười đâu?","action":{"intent":"DETAIL","referenceType":"PRODUCT_BY_POSITION","productPositions":[10]},"expect":{"clarification":true,"products":0}}]},
+ {"id":"E28","feature":"F04","turns":[{"input":"Máy màu Black RAM 8GB bản 256GB còn hàng","action":{"intent":"SEARCH","color":"Black","ram":"8GB","rom":"256GB","inStockOnly":true},"expect":{"minProducts":1}}]},
+ {"id":"E29","feature":"F02,F04","turns":[{"input":"Tìm máy Android","action":{"intent":"SEARCH","osTypes":["ANDROID"]},"expect":{"minProducts":1}}]},
+ {"id":"E30","feature":"F04","turns":[{"input":"Máy màn hình từ 6 inch","action":{"intent":"SEARCH","minScreenSize":6},"expect":{"minProducts":1}}]},
+ {"id":"E31","feature":"F03","turns":[{"input":"Xem danh mục điện thoại fixture","action":{"intent":"SEARCH","categorySlug":"fixture-phones"},"expect":{"minProducts":1}}]},
+ {"id":"E32","feature":"F18","turns":[{"input":"Cho biết Fixture Phone","action":{"intent":"DETAIL","targetProductName":"Fixture Phone"},"expect":{"clarification":true}}]},
+ {"id":"E33","feature":"F07","turns":[{"input":"So sánh Fixture Phone 1 với chính nó","action":{"intent":"COMPARE","compareProductNames":["Fixture Phone 1","Fixture Phone 1"]},"expect":{"clarification":true}}]},
+ {"id":"E34","feature":"F14","turns":[
+  {"input":"Tìm Samsung","action":{"intent":"SEARCH","brands":["Samsung"],"topicName":"Samsung"}},
+  {"input":"Quay lại chủ đề không biết tên","action":{"intent":"SEARCH","contextAction":"SWITCH_TOPIC","topicDescription":"Không có"},"expect":{"clarification":true}}]},
+ {"id":"E35","feature":"F17","turns":[
+  {"input":"Samsung RAM 8GB","action":{"intent":"SEARCH","brands":["Samsung"],"ram":"8GB"}},
+  {"input":"Thay bộ lọc thành ngân sách 8 triệu thôi","action":{"intent":"SEARCH","filterMode":"REPLACE","maxPrice":8000000},"expect":{"absentFilters":["brands","ram"],"filters":{"maxPrice":8000000}}}]},
+ {"id":"E36","feature":"F16","turns":[
+  {"input":"Xem các máy đang bán","action":{"intent":"SEARCH"}},
+  {"input":"Máy Samsung trong list","action":{"intent":"DETAIL","referenceType":"PRODUCT_BY_BRAND","brands":["Samsung"]},"expect":{"products":0,"clarification":true}}]},
+ {"id":"E37","feature":"F16","turns":[
+  {"input":"Tìm điện thoại","action":{"intent":"SEARCH"}},
+  {"input":"Xem máy thứ 2","action":{"intent":"DETAIL","referenceType":"PRODUCT_BY_POSITION","productPositions":[2]}},
+  {"input":"Giải thích máy đó","action":{"intent":"EXPLAIN","referenceType":"RECENT_PRODUCT"},"expect":{"sameProducts":1}}]},
+ {"id":"E38","feature":"F08","turns":[
+  {"input":"Liệt kê máy","action":{"intent":"SEARCH"}},
+  {"input":"Máy đắt nhất trong list?","action":{"intent":"RANK","referenceType":"LAST_PRESENTED_LIST","rankingCriterion":"PRICE_DESC","resultLimit":1},"expect":{"products":1,"subsetOf":0}}]},
+ {"id":"E39","feature":"F02,F17","turns":[
+  {"input":"sam sung duoi 10tr","action":{"intent":"SEARCH","brands":["Samsung"],"maxPrice":10000000}},
+  {"input":"8 ghi RAM","action":{"intent":"SEARCH","ram":"8GB"},"expect":{"filters":{"brands":["Samsung"],"maxPrice":10000000,"ram":"8GB"}}}]},
+ {"id":"E40","feature":"F15,F24","turns":[{"input":"Bạn vừa tư vấn tôi những gì?","action":{"intent":"RECALL","referenceType":"CONVERSATION_HISTORY"},"expect":{"products":0,"clarification":false}}]}
+]

@@ -8,6 +8,10 @@ import java.util.List;
 public record ChatbotSearchResult(
         List<ProductAiDto> aiProducts,
         List<ChatProductDto> uiProducts,
-        String fallbackNote
+        String fallbackNote,
+        boolean truncated
 ) {
+    public ChatbotSearchResult(List<ProductAiDto> aiProducts, List<ChatProductDto> uiProducts, String fallbackNote) {
+        this(aiProducts, uiProducts, fallbackNote, false);
+    }
 }

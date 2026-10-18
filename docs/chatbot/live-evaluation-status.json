@@ -1,0 +1,1305 @@
+{
+  "date": "2026-10-19",
+  "timezone": "Asia/Bangkok",
+  "mode": "NOT_RUN",
+  "reason": "User explicitly requested no live AI calls",
+  "actualExternalAiRequests": 0,
+  "model": null,
+  "scenarioCount": 40,
+  "multiTurnCount": 26,
+  "results": [
+    {
+      "id": "E01",
+      "input": [
+        "Tìm Samsung dưới 10 củ",
+        "RAM 8GB thôi"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "SEARCH",
+          "brands": [
+            "Samsung"
+          ],
+          "maxPrice": 10000000
+        },
+        {
+          "intent": "SEARCH",
+          "ram": "8GB"
+        }
+      ],
+      "expectedStateConstraints": [
+        {
+          "minProducts": 1,
+          "filters": {
+            "brands": [
+              "Samsung"
+            ],
+            "maxPrice": 10000000
+          }
+        },
+        {
+          "sameTopic": 0,
+          "filters": {
+            "brands": [
+              "Samsung"
+            ],
+            "ram": "8GB",
+            "maxPrice": 10000000
+          }
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E02",
+      "input": [
+        "Tìm Samsung dưới 10 triệu",
+        "Bỏ Samsung đi"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "SEARCH",
+          "brands": [
+            "Samsung"
+          ],
+          "maxPrice": 10000000
+        },
+        {
+          "intent": "SEARCH",
+          "clearFields": [
+            "brands"
+          ]
+        }
+      ],
+      "expectedStateConstraints": [
+        {},
+        {
+          "sameTopic": 0,
+          "absentFilters": [
+            "brands"
+          ],
+          "filters": {
+            "maxPrice": 10000000
+          }
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E03",
+      "input": [
+        "Máy dưới 10 triệu RAM 8GB",
+        "Thế 15 triệu thì sao?"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "SEARCH",
+          "maxPrice": 10000000,
+          "ram": "8GB"
+        },
+        {
+          "intent": "SEARCH",
+          "maxPrice": 15000000
+        }
+      ],
+      "expectedStateConstraints": [
+        {},
+        {
+          "filters": {
+            "maxPrice": 15000000,
+            "ram": "8GB"
+          }
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E04",
+      "input": [
+        "So sánh Fixture Phone 1 với Fixture Phone 2",
+        "Dự báo thời tiết hôm nay?",
+        "Bạn vừa so sánh hai máy gì?"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "COMPARE",
+          "compareProductNames": [
+            "Fixture Phone 1",
+            "Fixture Phone 2"
+          ]
+        },
+        {
+          "intent": "OUT_OF_DOMAIN",
+          "contextAction": "NEW_TOPIC",
+          "topicName": "Thời tiết"
+        },
+        {
+          "intent": "RECALL",
+          "referenceType": "LAST_COMPARED_PRODUCTS"
+        }
+      ],
+      "expectedStateConstraints": [
+        {
+          "products": 2
+        },
+        {
+          "sameTopic": 0,
+          "products": 0
+        },
+        {
+          "sameTopic": 0,
+          "sameProducts": 0
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E05",
+      "input": [
+        "Tư vấn điện thoại chơi game",
+        "So sánh 2 con máy ngon nhất trong list bạn vừa gợi ý"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "RECOMMEND",
+          "usageGoal": "gaming",
+          "rankingCriterion": "GAMING"
+        },
+        {
+          "intent": "COMPARE",
+          "referenceType": "LAST_PRESENTED_LIST",
+          "rankingCriterion": "GAMING",
+          "resultLimit": 2
+        }
+      ],
+      "expectedStateConstraints": [
+        {
+          "minProducts": 2
+        },
+        {
+          "products": 2,
+          "subsetOf": 0
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E06",
+      "input": [
+        "Giới thiệu vài máy",
+        "Con thứ hai giá bao nhiêu?"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "SEARCH"
+        },
+        {
+          "intent": "DETAIL",
+          "referenceType": "PRODUCT_BY_POSITION",
+          "productPositions": [
+            2
+          ]
+        }
+      ],
+      "expectedStateConstraints": [
+        {
+          "minProducts": 3
+        },
+        {
+          "products": 1,
+          "positionsFrom": {
+            "turn": 0,
+            "positions": [
+              2
+            ]
+          }
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E07",
+      "input": [
+        "So sánh Fixture Phone 4 và Fixture Phone 2",
+        "Máy nào rẻ hơn?"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "COMPARE",
+          "compareProductNames": [
+            "Fixture Phone 4",
+            "Fixture Phone 2"
+          ]
+        },
+        {
+          "intent": "RANK",
+          "referenceType": "LAST_COMPARED_PRODUCTS",
+          "rankingCriterion": "PRICE_ASC",
+          "resultLimit": 2
+        }
+      ],
+      "expectedStateConstraints": [
+        {
+          "products": 2
+        },
+        {
+          "products": 2,
+          "subsetOf": 0,
+          "ascendingPrice": true
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E08",
+      "input": [
+        "Tìm Samsung dưới 10 triệu",
+        "Giờ tư vấn chụp ảnh dưới 20 triệu",
+        "Quay lại Samsung lúc đầu"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "SEARCH",
+          "brands": [
+            "Samsung"
+          ],
+          "maxPrice": 10000000,
+          "topicName": "Samsung tiết kiệm"
+        },
+        {
+          "intent": "SEARCH",
+          "contextAction": "NEW_TOPIC",
+          "topicName": "Chụp ảnh",
+          "usageGoal": "photography",
+          "maxPrice": 20000000
+        },
+        {
+          "intent": "RECALL",
+          "contextAction": "SWITCH_TOPIC",
+          "topicDescription": "Samsung tiết kiệm",
+          "referenceType": "LAST_PRESENTED_LIST"
+        }
+      ],
+      "expectedStateConstraints": [
+        {},
+        {
+          "differentTopic": 0
+        },
+        {
+          "sameTopic": 0,
+          "sameProducts": 0,
+          "filters": {
+            "maxPrice": 10000000
+          }
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E09",
+      "input": [
+        "Tư vấn gaming",
+        "Chuyển sang máy pin tốt",
+        "Trước đó bạn đã tư vấn những gì?"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "SEARCH",
+          "usageGoal": "gaming",
+          "topicName": "Gaming"
+        },
+        {
+          "intent": "SEARCH",
+          "contextAction": "NEW_TOPIC",
+          "topicName": "Pin tốt",
+          "usageGoal": "battery"
+        },
+        {
+          "intent": "RECALL",
+          "referenceType": "CONVERSATION_HISTORY"
+        }
+      ],
+      "expectedStateConstraints": [
+        {},
+        {},
+        {
+          "sameTopic": 1,
+          "minProducts": 1
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E10",
+      "input": [
+        "Gợi ý vài điện thoại",
+        "So sánh hai máy đó",
+        "Máy đầu và máy thứ ba"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "SEARCH"
+        },
+        {
+          "intent": "COMPARE",
+          "referenceType": "LAST_PRESENTED_LIST"
+        },
+        {
+          "intent": "CHAT",
+          "messageAction": "ANSWER_CLARIFICATION",
+          "productPositions": [
+            1,
+            3
+          ]
+        }
+      ],
+      "expectedStateConstraints": [
+        {},
+        {
+          "clarification": true
+        },
+        {
+          "intent": "COMPARE",
+          "clarification": false,
+          "positionsFrom": {
+            "turn": 0,
+            "positions": [
+              1,
+              3
+            ]
+          }
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E11",
+      "input": [
+        "Máy dưới 1 đồng"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "SEARCH",
+          "maxPrice": 1
+        }
+      ],
+      "expectedStateConstraints": [
+        {
+          "products": 0,
+          "clarification": false
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E12",
+      "input": [
+        "Bạn vừa so sánh máy nào?"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "RECALL",
+          "referenceType": "LAST_COMPARED_PRODUCTS"
+        }
+      ],
+      "expectedStateConstraints": [
+        {
+          "clarification": true,
+          "products": 0
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E13",
+      "input": [
+        "Cho xem danh sách máy",
+        "Cảm ơn nhé",
+        "Xem lại list vừa rồi"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "SEARCH"
+        },
+        {
+          "intent": "CHAT",
+          "contextAction": "NEW_TOPIC",
+          "topicName": "Cảm ơn"
+        },
+        {
+          "intent": "RECALL",
+          "referenceType": "LAST_PRESENTED_LIST"
+        }
+      ],
+      "expectedStateConstraints": [
+        {},
+        {
+          "sameTopic": 0
+        },
+        {
+          "sameProducts": 0
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E14",
+      "input": [
+        "Gợi ý máy tiết kiệm",
+        "Bắt đầu chủ đề pin",
+        "Quay lại chủ đề trước"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "SEARCH",
+          "topicName": "Tiết kiệm",
+          "maxPrice": 6500000
+        },
+        {
+          "intent": "SEARCH",
+          "contextAction": "NEW_TOPIC",
+          "topicName": "Pin",
+          "minBattery": 5300
+        },
+        {
+          "intent": "RECALL",
+          "referenceType": "PREVIOUS_TOPIC"
+        }
+      ],
+      "expectedStateConstraints": [
+        {},
+        {},
+        {
+          "sameTopic": 0,
+          "sameProducts": 0
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E15",
+      "input": [
+        "Samsung RAM 8GB dưới 10 triệu",
+        "Bỏ toàn bộ điều kiện cũ"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "SEARCH",
+          "brands": [
+            "Samsung"
+          ],
+          "ram": "8GB",
+          "maxPrice": 10000000
+        },
+        {
+          "intent": "SEARCH",
+          "filterMode": "RESET"
+        }
+      ],
+      "expectedStateConstraints": [
+        {},
+        {
+          "absentFilters": [
+            "brands",
+            "ram",
+            "maxPrice"
+          ]
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E16",
+      "input": [
+        "Tìm vài máy cho tôi",
+        "Giải thích thêm con đầu tiên"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "SEARCH"
+        },
+        {
+          "intent": "EXPLAIN",
+          "referenceType": "PRODUCT_BY_POSITION",
+          "productPositions": [
+            1
+          ]
+        }
+      ],
+      "expectedStateConstraints": [
+        {},
+        {
+          "products": 1,
+          "positionsFrom": {
+            "turn": 0,
+            "positions": [
+              1
+            ]
+          }
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E17",
+      "input": [
+        "So sánh Fixture Phone 1 bản 256GB và 512GB màu Black"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "COMPARE",
+          "comparisonVariants": [
+            {
+              "productName": "Fixture Phone 1",
+              "rom": "256GB",
+              "color": "Black"
+            },
+            {
+              "productName": "Fixture Phone 1",
+              "rom": "512GB",
+              "color": "Black"
+            }
+          ]
+        }
+      ],
+      "expectedStateConstraints": [
+        {
+          "products": 1,
+          "clarification": false
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E18",
+      "input": [
+        "So sánh hai cấu hình Fixture Phone 1",
+        "Xin chào",
+        "Bạn vừa so sánh những bản nào?"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "COMPARE",
+          "comparisonVariants": [
+            {
+              "productName": "Fixture Phone 1",
+              "rom": "256GB",
+              "color": "Black"
+            },
+            {
+              "productName": "Fixture Phone 1",
+              "rom": "512GB",
+              "color": "Black"
+            }
+          ]
+        },
+        {
+          "intent": "CHAT"
+        },
+        {
+          "intent": "RECALL",
+          "referenceType": "LAST_COMPARED_PRODUCTS"
+        }
+      ],
+      "expectedStateConstraints": [
+        {},
+        {},
+        {
+          "sameProducts": 0,
+          "clarification": false
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E19",
+      "input": [
+        "Samsung RAM 64GB dưới 10 triệu"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "SEARCH",
+          "brands": [
+            "Samsung"
+          ],
+          "ram": "64GB",
+          "maxPrice": 10000000
+        }
+      ],
+      "expectedStateConstraints": [
+        {
+          "minProducts": 1,
+          "clarification": false
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E20",
+      "input": [
+        "Tìm máy dùng lâu",
+        "Hai máy pin lớn nhất trong list"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "SEARCH",
+          "usageGoal": "battery"
+        },
+        {
+          "intent": "RANK",
+          "referenceType": "LAST_PRESENTED_LIST",
+          "rankingCriterion": "BATTERY",
+          "resultLimit": 2
+        }
+      ],
+      "expectedStateConstraints": [
+        {},
+        {
+          "products": 2,
+          "subsetOf": 0
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E21",
+      "input": [
+        "Gợi ý điện thoại",
+        "Hai máy camera tốt nhất?"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "SEARCH"
+        },
+        {
+          "intent": "RANK",
+          "referenceType": "LAST_PRESENTED_LIST",
+          "rankingCriterion": "CAMERA",
+          "resultLimit": 2
+        }
+      ],
+      "expectedStateConstraints": [
+        {},
+        {
+          "clarification": true
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E22",
+      "input": [
+        "So sánh máy đi"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "COMPARE"
+        }
+      ],
+      "expectedStateConstraints": [
+        {
+          "clarification": true
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E23",
+      "input": [
+        "So hai máy đó",
+        "Thôi bỏ câu hỏi đó"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "COMPARE",
+          "referenceType": "LAST_PRESENTED_LIST"
+        },
+        {
+          "intent": "CHAT",
+          "messageAction": "CANCEL"
+        }
+      ],
+      "expectedStateConstraints": [
+        {
+          "clarification": true
+        },
+        {
+          "clarification": false
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E24",
+      "input": [
+        "Có máy 5G không?",
+        "Pin trên 5300mAh"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "SEARCH",
+          "networks": [
+            "5G"
+          ]
+        },
+        {
+          "intent": "SEARCH",
+          "minBattery": 5300
+        }
+      ],
+      "expectedStateConstraints": [
+        {
+          "minProducts": 1
+        },
+        {
+          "filters": {
+            "networks": [
+              "5G"
+            ],
+            "minBattery": 5300
+          }
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E25",
+      "input": [
+        "Tìm máy không tồn tại abcxyz"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "DETAIL",
+          "targetProductName": "Nonexistent fixture xyz"
+        }
+      ],
+      "expectedStateConstraints": [
+        {
+          "clarification": true,
+          "products": 0
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E26",
+      "input": [
+        "Kể chuyện vũ trụ"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "OUT_OF_DOMAIN"
+        }
+      ],
+      "expectedStateConstraints": [
+        {
+          "products": 0,
+          "clarification": false
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E27",
+      "input": [
+        "Tìm điện thoại",
+        "Con thứ mười đâu?"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "SEARCH"
+        },
+        {
+          "intent": "DETAIL",
+          "referenceType": "PRODUCT_BY_POSITION",
+          "productPositions": [
+            10
+          ]
+        }
+      ],
+      "expectedStateConstraints": [
+        {},
+        {
+          "clarification": true,
+          "products": 0
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E28",
+      "input": [
+        "Máy màu Black RAM 8GB bản 256GB còn hàng"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "SEARCH",
+          "color": "Black",
+          "ram": "8GB",
+          "rom": "256GB",
+          "inStockOnly": true
+        }
+      ],
+      "expectedStateConstraints": [
+        {
+          "minProducts": 1
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E29",
+      "input": [
+        "Tìm máy Android"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "SEARCH",
+          "osTypes": [
+            "ANDROID"
+          ]
+        }
+      ],
+      "expectedStateConstraints": [
+        {
+          "minProducts": 1
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E30",
+      "input": [
+        "Máy màn hình từ 6 inch"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "SEARCH",
+          "minScreenSize": 6
+        }
+      ],
+      "expectedStateConstraints": [
+        {
+          "minProducts": 1
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E31",
+      "input": [
+        "Xem danh mục điện thoại fixture"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "SEARCH",
+          "categorySlug": "fixture-phones"
+        }
+      ],
+      "expectedStateConstraints": [
+        {
+          "minProducts": 1
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E32",
+      "input": [
+        "Cho biết Fixture Phone"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "DETAIL",
+          "targetProductName": "Fixture Phone"
+        }
+      ],
+      "expectedStateConstraints": [
+        {
+          "clarification": true
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E33",
+      "input": [
+        "So sánh Fixture Phone 1 với chính nó"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "COMPARE",
+          "compareProductNames": [
+            "Fixture Phone 1",
+            "Fixture Phone 1"
+          ]
+        }
+      ],
+      "expectedStateConstraints": [
+        {
+          "clarification": true
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E34",
+      "input": [
+        "Tìm Samsung",
+        "Quay lại chủ đề không biết tên"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "SEARCH",
+          "brands": [
+            "Samsung"
+          ],
+          "topicName": "Samsung"
+        },
+        {
+          "intent": "SEARCH",
+          "contextAction": "SWITCH_TOPIC",
+          "topicDescription": "Không có"
+        }
+      ],
+      "expectedStateConstraints": [
+        {},
+        {
+          "clarification": true
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E35",
+      "input": [
+        "Samsung RAM 8GB",
+        "Thay bộ lọc thành ngân sách 8 triệu thôi"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "SEARCH",
+          "brands": [
+            "Samsung"
+          ],
+          "ram": "8GB"
+        },
+        {
+          "intent": "SEARCH",
+          "filterMode": "REPLACE",
+          "maxPrice": 8000000
+        }
+      ],
+      "expectedStateConstraints": [
+        {},
+        {
+          "absentFilters": [
+            "brands",
+            "ram"
+          ],
+          "filters": {
+            "maxPrice": 8000000
+          }
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E36",
+      "input": [
+        "Xem các máy đang bán",
+        "Máy Samsung trong list"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "SEARCH"
+        },
+        {
+          "intent": "DETAIL",
+          "referenceType": "PRODUCT_BY_BRAND",
+          "brands": [
+            "Samsung"
+          ]
+        }
+      ],
+      "expectedStateConstraints": [
+        {},
+        {
+          "products": 0,
+          "clarification": true
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E37",
+      "input": [
+        "Tìm điện thoại",
+        "Xem máy thứ 2",
+        "Giải thích máy đó"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "SEARCH"
+        },
+        {
+          "intent": "DETAIL",
+          "referenceType": "PRODUCT_BY_POSITION",
+          "productPositions": [
+            2
+          ]
+        },
+        {
+          "intent": "EXPLAIN",
+          "referenceType": "RECENT_PRODUCT"
+        }
+      ],
+      "expectedStateConstraints": [
+        {},
+        {},
+        {
+          "sameProducts": 1
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E38",
+      "input": [
+        "Liệt kê máy",
+        "Máy đắt nhất trong list?"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "SEARCH"
+        },
+        {
+          "intent": "RANK",
+          "referenceType": "LAST_PRESENTED_LIST",
+          "rankingCriterion": "PRICE_DESC",
+          "resultLimit": 1
+        }
+      ],
+      "expectedStateConstraints": [
+        {},
+        {
+          "products": 1,
+          "subsetOf": 0
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E39",
+      "input": [
+        "sam sung duoi 10tr",
+        "8 ghi RAM"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "SEARCH",
+          "brands": [
+            "Samsung"
+          ],
+          "maxPrice": 10000000
+        },
+        {
+          "intent": "SEARCH",
+          "ram": "8GB"
+        }
+      ],
+      "expectedStateConstraints": [
+        {},
+        {
+          "filters": {
+            "brands": [
+              "Samsung"
+            ],
+            "maxPrice": 10000000,
+            "ram": "8GB"
+          }
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    },
+    {
+      "id": "E40",
+      "input": [
+        "Bạn vừa tư vấn tôi những gì?"
+      ],
+      "expectedStructuredActions": [
+        {
+          "intent": "RECALL",
+          "referenceType": "CONVERSATION_HISTORY"
+        }
+      ],
+      "expectedStateConstraints": [
+        {
+          "products": 0,
+          "clarification": false
+        }
+      ],
+      "actualStructuredAction": null,
+      "actualState": null,
+      "actualResponse": null,
+      "status": "SKIPPED_USER_REQUEST",
+      "failureReason": null
+    }
+  ]
+}

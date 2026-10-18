@@ -5,5 +5,6 @@ public enum ChatIntent {
     DETAIL,
     COMPARE,
     CHAT,
-    OUT_OF_DOMAIN
+    OUT_OF_DOMAIN,
+    RECOMMEND, RANK, EXPLAIN, RECALL
 }

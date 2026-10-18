@@ -34,7 +34,7 @@ public class AiJsonParser {
 
             return objectMapper.readValue(json, clazz);
 
-        } catch (Exception e) {
+        } catch (com.fasterxml.jackson.core.JsonProcessingException e) {
             throw new IllegalArgumentException(
                     "Không thể parse JSON từ AI",
                     e

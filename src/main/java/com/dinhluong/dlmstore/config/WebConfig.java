@@ -7,13 +7,17 @@
     @Configuration
     public class WebConfig {
 
+        // Local development defaults; deployments can replace the entire allowlist.
+        @org.springframework.beans.factory.annotation.Value("${app.cors.allowed-origins:http://localhost:3000,http://localhost:5173,https://localhost:5173}")
+        private String[] allowedOrigins;
+
         @Bean
         public WebMvcConfigurer corsConfigurer() {
             return new WebMvcConfigurer() {
                 @Override
                 public void addCorsMappings(CorsRegistry registry) {
                     registry.addMapping("/**")
-                            .allowedOriginPatterns("*") 
+                            .allowedOrigins(allowedOrigins)
                             .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                             .allowedHeaders("*")
                             .allowCredentials(true); 

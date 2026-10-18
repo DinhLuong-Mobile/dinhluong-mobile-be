@@ -4,6 +4,7 @@ import com.dinhluong.dlmstore.dto.responses.DashboardResponse;
 import com.dinhluong.dlmstore.entity.Order;
 import com.dinhluong.dlmstore.entity.ProductVariant;
 import com.dinhluong.dlmstore.entity.Voucher;
+import com.dinhluong.dlmstore.chatbot.repository.ChatbotInteractionRepository;
 import com.dinhluong.dlmstore.repository.*;
 import com.dinhluong.dlmstore.repository.projections.DashboardProjections;
 import lombok.RequiredArgsConstructor;

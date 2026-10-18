@@ -113,7 +113,7 @@ public class ChatbotProductSearchService {
                     .findById(productId)
                     .orElse(null);
 
-            if (product == null) {
+            if (product == null || product.getStatus() != com.dinhluong.dlmstore.entity.Enums.ProductStatus.ACTIVE) {
                 continue;
             }
 
@@ -172,7 +172,7 @@ public class ChatbotProductSearchService {
 
         Page<ProductCardResponse> page =
                 productService.getAllProducts(
-                        null,
+                        criteria.getCategorySlug(),
                         criteria.getBrands(),
                         criteria.getOsTypes(),
                         roms,
@@ -202,7 +202,7 @@ public class ChatbotProductSearchService {
         // nới lỏng các bộ lọc cấu hình.
         List<ProductCardResponse> matches =
                 productService.getAllProducts(
-                        null,
+                        criteria.getCategorySlug(),
                         criteria.getBrands(),
                         null,
                         null,
@@ -229,7 +229,7 @@ public class ChatbotProductSearchService {
         if (StringUtils.hasText(criteria.getSearchKeyword())) {
 
             matches = productService.getAllProducts(
-                    null,
+                    criteria.getCategorySlug(),
                     criteria.getBrands(),
                     null,
                     null,

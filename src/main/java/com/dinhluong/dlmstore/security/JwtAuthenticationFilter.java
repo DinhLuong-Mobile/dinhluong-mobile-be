@@ -26,6 +26,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             HttpServletResponse response,
             FilterChain filterChain) throws ServletException, IOException {
         String token = getJwtFromRequest(request);
+        if ("/api/chatbot".equals(request.getServletPath())
+                && request.getHeader("Authorization") != null
+                && (token == null || !tokenProvider.validateToken(token))) {
+            SecurityContextHolder.clearContext();
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid or expired authentication token");
+            return;
+        }
         if (token != null && tokenProvider.validateToken(token)) {
             String email = tokenProvider.getEmailFromJWT(token);
             UserDetails userDetails = userDetailsService.loadUserByUsername(email);
